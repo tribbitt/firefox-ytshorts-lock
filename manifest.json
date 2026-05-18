@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "YT Shorts Lock",
+  "version": "1.0.0",
+  "description": "Locks YouTube Shorts to a single short. Disables scroll, arrow keys, swipes, and next/previous navigation.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "yt-shorts-lock@local",
+      "strict_min_version": "115.0"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://m.youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://m.youtube.com/*"
+      ]
+    }
+  ]
+}

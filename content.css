@@ -1,0 +1,57 @@
+/* Hide the up/down navigation arrows on YouTube Shorts.
+   YouTube changes selectors often, so we cast a wide net. */
+
+ytd-shorts #navigation-button-down,
+ytd-shorts #navigation-button-up,
+ytd-shorts .navigation-container,
+ytd-shorts [aria-label="Next video"],
+ytd-shorts [aria-label="Previous video"],
+ytd-shorts [aria-label="Next Short"],
+ytd-shorts [aria-label="Previous Short"],
+ytd-shorts-player-controls #navigation-button-up,
+ytd-shorts-player-controls #navigation-button-down,
+ytd-reel-video-renderer .navigation-container,
+.shorts-navigation-button-up,
+.shorts-navigation-button-down,
+button[aria-label*="Next" i][class*="short" i],
+button[aria-label*="Previous" i][class*="short" i] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+
+/* Belt-and-suspenders: kill vertical scroll on the shorts shelf container itself. */
+ytd-shorts,
+ytd-shorts #shorts-container,
+ytd-shorts ytd-reel-video-renderer {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
+}
+
+/* Note: hiding non-active reel-video-renderers is handled in content.js via
+   inline styles applied only after YT designates an is-active renderer. Doing
+   it from CSS at document_start hides renderers before YT sets is-active,
+   which corrupts the eventual active short's playback. */
+
+/* Kill the "next short" thumbnail tile that peeks at the bottom of the page.
+   This is a div sibling of the active renderer, not a renderer itself. */
+.reel-video-in-sequence-thumbnail,
+ytd-shorts .reel-video-in-sequence-thumbnail {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+/* Stop the whole page from scrolling while on /shorts/. JS toggles this class. */
+html.ytsl-locked,
+html.ytsl-locked body {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none !important;
+}

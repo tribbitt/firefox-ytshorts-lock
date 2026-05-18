@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Build artifacts
+*.xpi
+web-ext-artifacts/
+
+# web-ext sign state
+.amo-upload-uuid
+
+# Editor / OS
+*.swp
+*~
+.idea/
+.vscode/
